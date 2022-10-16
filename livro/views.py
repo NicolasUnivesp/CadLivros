@@ -1,7 +1,15 @@
+import django
+
+
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import Livro
+from .models import Emprestimo, Livro
 from .forms import LivroForm
+
+
+
+
 
 class ListaLivroView(ListView):
     model = Livro
@@ -30,4 +38,14 @@ class LivroDeleteView(DeleteView):
     model = Livro
     success_url = '/livros/'
 
+
+def emprestimo(request, pk):
+    emprestimo = Emprestimo.objects.filter(livro=pk)
+    return render(request, 'emprestimo/emprestimo_list.html', {'emprestimos': emprestimo, 'pk_livro': pk})#
+
+    
+
+
 # Create your views here.
+
+

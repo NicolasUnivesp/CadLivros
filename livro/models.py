@@ -8,6 +8,17 @@ class Livro(models.Model):
     
     def __str__(self) -> str:
         return self.titulo_completo
+    
+class Emprestimo(models.Model):
+    nome = models.CharField(max_length=256)
+    email = models.EmailField(max_length=256)
+    data_retirada = models.DateField(null="false")
+    data_devolucao = models.DateField(null="True")
+    
+    livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.nome
 
 
 

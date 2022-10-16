@@ -32,6 +32,7 @@
             <td>
                 <a href="{% url 'livro.editar' livro.pk %}">Editar</a>
                 <a href="{% url 'livro.remover' livro.pk %}">Remover</a>
+                <a href="{% url 'livro.emprestimo' livro.pk %}">Emprestar</a>
             </td>
           </tr>
         {% endfor %}

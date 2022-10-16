@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<form method="GET">
+    <input type="text" name="nome" placeholder="Buscar por nome..."> <!-- nome de quem emprestou -->
+    <input type="submit" value="Buscar"/>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>retirada</th>
+            <th>devolução</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emprestimo in emprestimos %}
+        <tr>
+            <td>{{ emprestimo.nome }}</td>
+            <td>{{ emprestimo.email }}</td>
+            <td>{{ emprestimo.data_retirada }}</td>
+            <td>{{ emprestimo.data_devolucao }}</td>
+            <td></td>
+
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
