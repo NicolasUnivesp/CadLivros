@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<form method="GET">
+    <input type="text" name="titulo" placeholder="Buscar por título..."/>
+    <input type="submit" value="Buscar"/>
+</form>
+<a href="{% url 'livro.novo' %}">Novo</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Aquisição</th>
+            <th>Emprestado</th>
+            <th>Ações</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for livro in object_list %}
+          <tr>
+            <td>{{ livro.titulo_completo }}</td>
+            <td>{{ livro.data_cadastro|date:'d/m/Y'}}</td>
+            <td>
+                {% if livro.emprestado %}
+                Sim
+                {% else %}
+                Não
+                {% endif %}                
+            </td>
+            <td>
+                <a href="{% url 'livro.editar' livro.pk %}">Editar</a>
+                <a href="{% url 'livro.remover' livro.pk %}">Remover</a>
+            </td>
+          </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock content %}
