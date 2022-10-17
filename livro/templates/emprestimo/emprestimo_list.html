@@ -1,5 +1,49 @@
 {% extends 'main/base.html' %}
 {% block content %}
+<a href="{% url 'emprestimo.novo' pk_livro %}">Novo</a>
+<form method="GET">
+    <input type="text" name="nome" placeholder="Buscar por nome..."> <!-- nome de quem emprestou -->
+    <input type="submit" value="Buscar"/>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Retirada</th>
+            <th>Devolução</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contato in contatos %}
+        <tr>
+            <td>{{ emprestimo.nome }}</td>
+            <td>{{ emprestimo.email }}</td>
+            <td>{{ emprestimo.retirada }}</td>
+            <td>{{ emprestimo.devolucao }}</td>
+            <td>
+                <a href="{% url 'emprestimo.editar' pk_livro emprestimo.pk %}">Editar</a>
+                <a href="{% url 'emprestimo.remover' pk_livro emprestimo.pk %}">Remover</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends 'main/base.html' %}
+{% block content %}
 <form method="GET">
     <input type="text" name="nome" placeholder="Buscar por nome..."> <!-- nome de quem emprestou -->
     <input type="submit" value="Buscar"/>
@@ -22,7 +66,11 @@
             <td>{{ emprestimo.email }}</td>
             <td>{{ emprestimo.data_retirada }}</td>
             <td>{{ emprestimo.data_devolucao }}</td>
-            <td></td>
+            <td>
+                <a href="{% url 'emprestimo.novo' pk_livro %}">Novo</a>
+                <a href="{% url 'emprestimo.editar' pk_livros emprestimo.pk %}">Editar</a>
+                <a href="{% url 'emprestimo.remover' pk_livros emprestimo.pk %}">Remover</a>
+            </td>
 
         </tr>
         
@@ -30,4 +78,4 @@
     </tbody>
 </table>
 
-{% endblock content %}
+{% endblock content %} {% endcomment %}
