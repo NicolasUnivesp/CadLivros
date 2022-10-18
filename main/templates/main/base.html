@@ -8,18 +8,6 @@
 </head>
 <body>
     {% include 'main/menu.html' %}
-    {% comment %} {% if user.is_authenticated %}
-    <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'livro.index' %}">Livros</a></li>
-    </ul>
-    {% endif %} {% endcomment %}
-    {% comment %} issso vai pro arquivo menu.html {% endcomment %}
-    {% block content %}
-    {% endblock content %}
-</body>
-{% comment %} <body>
-    {% include 'main/menu.html' %}
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -29,5 +17,5 @@
     {% endif %}
     {% block content %}
     {% endblock content %}
-</body> {% endcomment %}
+</body>
 </html>
