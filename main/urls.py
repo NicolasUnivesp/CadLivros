@@ -1,7 +1,6 @@
 from django import views
 from django.urls import path
-from .views import HomeView
-from .views import register
+from .views import HomeView, register
 from django.contrib.auth.decorators import login_required
 
 
