@@ -1,10 +1,11 @@
 {% extends 'main/base.html' %}
 {% block content %}
-<a href="{% url 'emprestimo.novo' pk_livro %}">Novo</a>
+
 <form method="GET">
     <input type="text" name="nome" placeholder="Buscar por nome..."> <!-- nome de quem emprestou -->
     <input type="submit" value="Buscar"/>
 </form>
+<a href="{% url 'emprestimo.novo' pk_livro %}">Novo</a>
 <table>
     <thead>
         <tr>
@@ -16,12 +17,13 @@
         </tr>
     </thead>
     <tbody>
-        {% for contato in contatos %}
+        {% comment %} p* que p* marquinhos! {% endcomment %}
+        {% for emprestimo in emprestimos %}
         <tr>
             <td>{{ emprestimo.nome }}</td>
             <td>{{ emprestimo.email }}</td>
-            <td>{{ emprestimo.retirada }}</td>
-            <td>{{ emprestimo.devolucao }}</td>
+            <td>{{ emprestimo.data_retirada }}</td>
+            <td>{{ emprestimo.data_devolucao }}</td>
             <td>
                 <a href="{% url 'emprestimo.editar' pk_livro emprestimo.pk %}">Editar</a>
                 <a href="{% url 'emprestimo.remover' pk_livro emprestimo.pk %}">Remover</a>

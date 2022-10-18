@@ -8,8 +8,6 @@ from .forms import LivroForm, EmprestimoForm
 
 
 
-
-
 class ListaLivroView(ListView):
     model = Livro
     queryset = Livro.objects.all().order_by('titulo_completo')
@@ -55,9 +53,9 @@ def emprestimo_novo(request, pk_livro):
 
 def emprestimo_editar(request, pk_livro, pk):
     emprestimo = get_object_or_404(Emprestimo, pk=pk)
-    form = EmprestimoForm(instace=emprestimo)
+    form = EmprestimoForm(instance=emprestimo)
     if request.method == "POST":
-        form = EmprestimoForm(request.POST, instace=emprestimo)
+        form = EmprestimoForm(request.POST, instance=emprestimo)
         if form.is_valid():
             form.save()
             return redirect(reverse('livro.emprestimo', args=[pk_livro]))
