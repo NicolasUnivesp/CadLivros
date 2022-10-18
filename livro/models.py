@@ -1,10 +1,13 @@
 from email.policy import default
+# from tkinter import CASCADE
 from django.db import models
+# from django.contrib.auth.models import User
 
 class Livro(models.Model):
     titulo_completo = models.CharField(max_length=256)
     data_cadastro = models.DateField(null=True)
     emprestado = models.BooleanField(default=False)
+    # usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     
     def __str__(self) -> str:
         return self.titulo_completo
