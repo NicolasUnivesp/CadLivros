@@ -13,14 +13,14 @@ def register(request):
     if request.method == "POST":
         form = NovoUsuarioForm(request.POST)
         if form.is_valid():
-            user = form.save
+            user = form.save()
             login(request, user)
             messages.success(request, "Cadastro realizado com sucesso!")
             return redirect('home')
         messages.error(request, "Falha no cadastro do usuario. ")
-        form = NovoUsuarioForm()
-        context = {'form':form}
-        return render(request, template_name='main/register.html', context=context)
+    form = NovoUsuarioForm()
+    context = {'form': form}
+    return render(request, template_name='main/register.html', context=context)
             
 
 
